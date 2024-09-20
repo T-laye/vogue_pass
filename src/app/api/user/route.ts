@@ -1,15 +1,16 @@
 import { dbConnect, dbDisconnect } from "@/config/dbConnect";
-import Product from "@/lib/Schemas/ProductSchema";
+import { User } from "@/lib/Schemas/UserSchema";
+
 import { NextResponse } from "next/server";
 
 export async function GET() {
   await dbConnect();
 
   try {
-    const products = await Product.find({});
+    const user = await User.find({});
 
     // Return the response with the product data
-    return NextResponse.json(products);
+    return NextResponse.json(user);
   } catch (err: unknown) {
     // Check if the error is an instance of Error and handle it accordingly
     if (err instanceof Error) {
