@@ -15,13 +15,21 @@ const userSchema: Schema = new Schema(
     },
     password: {
       type: String,
+      // Only required if the user did not sign up with Google
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      required: function (this: any) {
+        return !this.google;
+      },
+    },
+    google: {
+      type: Boolean,
       required: true,
+      default: false,
     },
     phone: {
       type: String,
-      required: true,
     },
-    profilePicture: {
+    image: {
       type: String,
       default: "",
     },
@@ -61,7 +69,7 @@ const userSchema: Schema = new Schema(
   { timestamps: true } // Automatically manage createdAt and updatedAt
 );
 
+// Prevent model overwrite in development environments
 const User = mongoose.models.User || mongoose.model<IUser>("User", userSchema);
 
 export { User };
-

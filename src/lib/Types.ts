@@ -6,7 +6,8 @@ export interface IUser extends Document {
   email: string;
   password: string;
   phone: string;
-  profilePicture: string;
+  image: string;
+  google: boolean;
   events: [];
   tickets: [];
   notifications: [];
@@ -38,4 +39,28 @@ export interface ITicket extends Document {
   typeName: string;
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface IOtp extends Document {
+  email: string;
+  otp: string;
+  expires: number; // Timestamp for expiration
+}
+
+export  interface Session {
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    password: string;
+    phone: string;
+    image: string;
+    google: boolean;
+    events: [];
+    tickets: [];
+    notifications: [];
+    role: string;
+    createdAt: Date;
+    updatedAt: Date;
+  };
 }

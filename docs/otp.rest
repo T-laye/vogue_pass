@@ -1,0 +1,53 @@
+### 1. Send OTP
+
+POST http://localhost:3000/api/auth/otp/send
+Content-Type: application/json
+
+{
+  "email": "user@example.com"
+}
+
+### Expected Response:
+
+// Success
+{
+  "message": "OTP sent successfully"
+}
+
+// Error Response (missing email)
+{
+  "message": "Bad Request"
+}
+
+// Error Response (email sending failure)
+{
+  "message": "Failed to send OTP"
+}
+
+
+### 2. Verify OTP
+
+POST http://localhost:3000/api/auth/otp/verify
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "otp": "123456"  // Replace with the actual OTP received via email
+}
+
+### Expected Response:
+
+// Success
+{
+  "message": "OTP verified successfully"
+}
+
+// Error Response (invalid or expired OTP)
+{
+  "message": "OTP has expired or does not exist"
+}
+
+// Error Response (incorrect OTP)
+{
+  "message": "Invalid OTP"
+}

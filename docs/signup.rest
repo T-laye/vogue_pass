@@ -1,0 +1,99 @@
+### User Registration API
+
+POST /api/auth/signup
+Content-Type: application/json
+
+{
+  "name": "Okoro Maduka",
+  "email": "admin@gmail.com",
+  "password": "SecurePassword123",
+  "phone": "09080716744"
+}
+
+###
+
+### Success Response
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "message": "User registered successfully",
+  "user": {
+    "name": "Okoro Maduka",
+    "email": "admin@gmail.com",
+    "phone": "09080716744",
+    "profilePicture": "",
+    "events": [],
+    "tickets": [],
+    "role": "user",
+    "_id": "66f13e23c641cbbc6ddf7c9b",
+    "notifications": [],
+    "createdAt": "2024-09-23T10:08:35.913Z",
+    "updatedAt": "2024-09-23T10:08:35.913Z",
+    "__v": 0
+  }
+}
+
+###
+
+### Error Response: Missing Fields
+POST /api/auth/signup
+Content-Type: application/json
+
+{
+  "email": "admin@gmail.com",
+  "password": "SecurePassword123"
+}
+
+###
+
+HTTP/1.1 400 Bad Request
+Content-Type: application/json
+
+{
+  "error": "Please provide all required fields"
+}
+
+###
+
+### Error Response: Email Already Registered
+POST /api/auth/signup
+Content-Type: application/json
+
+{
+  "name": "Okoro Maduka",
+  "email": "existing_email@gmail.com",
+  "password": "SecurePassword123",
+  "phone": "09080716744"
+}
+
+###
+
+HTTP/1.1 400 Bad Request
+Content-Type: application/json
+
+{
+  "error": "Email is already registered"
+}
+
+###
+
+### Error Response: Internal Server Error
+POST /api/auth/signup
+Content-Type: application/json
+
+{
+  "name": "Okoro Maduka",
+  "email": "admin@gmail.com",
+  "password": "SecurePassword123",
+  "phone": "09080716744"
+}
+
+###
+
+HTTP/1.1 500 Internal Server Error
+Content-Type: application/json
+
+{
+  "error": "An unknown error occurred"
+}
